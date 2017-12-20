@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/movie.css', type='text/css' )
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700&amp;subset=latin-ext')
+    link(href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=latin-ext", rel="stylesheet")
+  body
+    nav
+      .top
+        span.logo Social
+          span.logo2 App
+        ul(class="menu1")
+          li
+            a(href="http://localhost:3000/") Feed
+          li
+            a(href="add") Add
+        ul(class="menu2")
+          li.facebook
+            .fb-login-button(autologoutlink="true",
+              data-width="240", data-max-rows="1", data-size="large",
+              data-button-type="continue_with", data-show-faces="false",
+              data-auto-logout-link="true" data-use-continue-as="true")
+            
+      .oneFilmContainer
+        .oneFilm
+    script(
+      src="http://code.jquery.com/jquery-3.2.1.min.js",
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=",
+      crossorigin="anonymous")
+    script(src="https://unpkg.com/axios/dist/axios.min.js")
+    script(src='/javascripts/newMovie.js', type='text/javascript')

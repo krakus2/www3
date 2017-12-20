@@ -1,0 +1,253 @@
+:root {
+  --pink: rgb(209, 16, 172);
+  --blue: rgb(9, 224, 239);
+  --matBlue: #2196F3;
+  --darkBlue: #2C3E50;
+  --green: #18BC9C;
+  --lightGrey: #ECF0F1;
+}
+
+
+body{
+  background-color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+ul > li{
+  padding: 20px;
+}
+
+ul > li > a{
+  text-decoration: none;
+  font-size: 23px;
+  padding: 10px 30px;
+  color: white;
+}
+
+.top{
+  width: 100%;
+  background-color: var(--darkBlue);
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.menu1{
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 100px;
+  width: 50%;
+  padding-left: 20px;
+}
+
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  padding-left: 40px;
+  padding-right: 30px;
+  font-family: 'Lato', sans-serif;
+  color: white;
+
+}
+.logo2{color: var(--matBlue);; text-decoration: underline;}
+
+a{
+  transition: all 0.15s ease-in-out;
+}
+.top a:hover{
+  color: var(--matBlue);;
+  text-decoration: underline;
+}
+
+.menu2{
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 100px;
+  width: 50%;
+  padding-right: 40px;
+}
+
+.searchContainer{
+  width: 1140px;
+  height: 150px;
+  border-radius: 4px;
+  background-color: var(--lightGrey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-weight: 300;
+  overflow: hidden;
+}
+
+.container{
+  margin-top: 20px;
+  width: 100vw;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden
+}
+
+/*#searchBar{
+  border-radius: 4px;
+  width: 400px;
+  height: 30px;
+  padding: 3px 10px;
+  outline: none;
+}*/
+
+.searchText{
+  margin: 0;
+  font-size: 20px;
+  padding-bottom: 10px;
+  transform: translateY(-10px);
+}
+
+.container2{
+  width: 100%;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.films{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 1200px;
+  /*transform: translateX(-10px);*/
+}
+
+.eachMovie{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 212px;
+  height: 390px;
+  margin: 10px 10px;
+  background-color: var(--lightGrey);
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.moreButton{
+  width: 88px;
+  height: 36px;
+  background-color: var(--matBlue);
+  border-radius: 2px;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.4);
+}
+.moreButton:hover{
+  background-color: #1A77C9;
+  box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.4);
+}
+.moreButton:active{
+  background-color: #1966B8;
+
+}
+.eachMovie img{
+  width: 172px;
+  height: 240px;
+}
+
+.hide{
+  height: 90px;
+  overflow: hidden;
+}
+
+.eachMovie h4{
+  color: black;
+  font-size: 18px;
+  text-align: center;
+  padding: 0 5px;
+}
+
+a.moreButton{
+  text-align: center;
+  font-size: 18px;
+  line-height: 2;
+}
+
+
+.move{
+  top: 0;
+  transform: translate(0, -14px);
+  color: var(--matBlue) !important;
+  font-size: 12px;
+}
+input::-webkit-datetime-edit{
+  color: transparent;
+}
+input:focus::-webkit-datetime-edit{
+  color: #000;
+}
+
+input::-moz-datetime-edit{
+  color: transparent;
+}
+input:focus::-moz-datetime-edit{
+  color: #000;
+}
+
+input::placeholder {
+  color: transparent;
+  transition: all 0;
+}
+
+input:focus::placeholder{
+  color: grey;
+  transition: all 1s;
+}
+
+input.field:focus{
+	border-bottom: 2px solid var(--matBlue) !important;
+	cursor:text !important;
+}
+input.field:hover{
+	border-bottom: 2px solid black;
+  cursor: pointer;
+}
+
+span.disapear{
+	position: absolute;
+	color: grey;
+	transition: all 0.3s;
+	pointer-events: none;
+}
+
+.row{
+	box-sizing: border-box;
+	height: 60px;
+	position: relative;
+  top: 17px;
+}
+
+input.field{
+	border: none;
+	border-bottom: 1px solid grey;
+	width: 400px;
+	outline: none;
+	font-size: 18px;
+  background-color: var(--lightGrey);
+
+}

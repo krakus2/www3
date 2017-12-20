@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/layout.css', type='text/css' )
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700&amp;subset=latin-ext')
+  body
+  nav 
+    .top
+      span.logo Social 
+        span.logo2 App
+      ul(class="menu1")
+        li
+          a(href="http://localhost:3000/") Feed
+        li
+          a(href="add") Add
+      ul(class="menu2")
+        li
+          .fb-login-button(
+            data-width="240", data-max-rows="1", data-size="large",
+            data-button-type="continue_with", data-show-faces="false",
+            data-auto-logout-link="true" data-use-continue-as="true")
+          
+    script(src='/javascripts/fbLogin.js', type='text/javascript')
+  block content
+    
