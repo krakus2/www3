@@ -9,7 +9,7 @@ require('dotenv').config({ path: 'variables.env' })
   presets: ["es2015"]
 });*/
 
-var index = require('./routes/index');
+//var index = require('./routes/index');
 var users = require('./routes/users');
 var add = require('./routes/add')
 var movie = require('./routes/movie')
@@ -26,11 +26,12 @@ var nameSchema = new mongoose.Schema({
     name: String,
     fbPicture: String,
     poster: String,
-    date: Number, 
+    date: Number,
+    filmName: String,
     myScore: String,
     myOpinion: String
 });
-var User = mongoose.model("User", nameSchema);
+var user = mongoose.model("user", nameSchema);
 
 var app = express();
 
@@ -48,18 +49,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.use('/', index);
+//app.use('/', index);
+app.get('/', function(req, res){
+	user.find({}, function(err, docs){
+		if(err) res.json(err);
+		else    res.render('layout', {users: docs}); //'index'
+	});
+});
 app.use('/add', add);
 app.use('/movie', movie);
-app.post("/addname", (req, res) => {
-  var myData = new User(req.body);
+app.post("/addname", (req, res, next) => {
+  let myData = new user(req.body);
   myData.save()
     .then(item => {
+      console.log(item)
       res.send("item saved to database");
     })
     .catch(err => {
       res.status(400).send("unable to save to database");
     });
+    next()
+    //setTimeout(next, 1500);
+}, function(req, res, next){
+  res.redirect('/')
 });
 
 

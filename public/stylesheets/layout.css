@@ -1,12 +1,16 @@
 :root {
   --pink: rgb(209, 16, 172);
   --blue: rgb(9, 224, 239);
+  --matBlue: #2196F3;
+  --darkBlue: #2C3E50;
+  --green: #18BC9C;
+  --lightGrey: #ECF0F1;
 }
 
 
 body{
-  background-color: rgba(42, 44, 59, 1);
-  font-family: 'Lato', sans-serif;
+  background-color: white;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   margin: 0;
   padding: 0;
@@ -25,7 +29,7 @@ ul > li > a{
 
 .top{
   width: 100%;
-  background-color: rgb(55, 90, 127);
+  background-color: var(--darkBlue);
   height: 100px;
   margin: 0;
   padding: 0;
@@ -52,14 +56,17 @@ ul > li > a{
   font-size: 35px;
   padding-left: 40px;
   padding-right: 30px;
+  font-family: 'Lato', sans-serif;
+  color: white;
+
 }
-.logo2{color: var(--blue);}
+.logo2{color: var(--matBlue);; text-decoration: underline;}
 
 a{
   transition: all 0.15s ease-in-out;
 }
 .top a:hover{
-  color: var(--blue);
+  color: var(--matBlue);;
   text-decoration: underline;
 }
 
@@ -73,4 +80,65 @@ a{
   height: 100px;
   width: 50%;
   padding-right: 40px;
+}
+
+.container{
+  color: black;
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eachFilmContainer{
+  margin: 10px 0;
+  background-color: var(--lightGrey);
+  padding: 10px;
+  border-radius: 4px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.line1{
+  display: flex;
+  flex-direction: row;
+}
+
+.basic{
+  padding-left: 7px;
+}
+
+.basic span:first-of-type{
+  display: block;
+  transform: translateY(3px);
+  margin-top: 2px;
+}
+
+.basic span:last-of-type{
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.line2{
+  display: flex;
+  flex-direction: row;
+  padding-top: 7px;
+}
+
+.fbImg img{
+  border-radius: 100%;
+}
+
+.description{
+  width: 600px;
+  overflow: hidden;
+  padding: 0 10px;
+  text-align: justify;
+}
+
+.filmImg img{
+  width: 172px;
+  height: 240px;
 }

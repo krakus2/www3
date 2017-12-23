@@ -75,6 +75,9 @@ window.fbAsyncInit = function() {
         let data = ''
         films.forEach( (elem, index) => {
           if(elem.Type === 'movie'){
+            if(elem.Poster === "N/A"){
+              elem.Poster = "https://lh5.googleusercontent.com/LONlbb-klLzFmlALezI1kSQyKEZjVEQykay0sSPkHOlVgpA-GGXojBPJzibEA3Or28kgRqpC6B10CzyuUHGF=w1259-h964"
+            }
             data += `
               <div class='eachMovie'>
                 <img src='${elem.Poster}'>

@@ -10,9 +10,10 @@ window.fbAsyncInit = function() {
       statusChangeCallback(response);
     });
 
-    var finished_rendering = function() {
+    function finished_rendering() {
       console.log("finished rendering plugins");
     }
+
     FB.Event.subscribe('xfbml.render', () => {
       FB.Event.subscribe('auth.statusChange', () => {
         loginStatus = !loginStatus
@@ -27,6 +28,7 @@ window.fbAsyncInit = function() {
   let loginStatus;
   let name;
   let userID;
+  let fbPicture;
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -40,14 +42,15 @@ window.fbAsyncInit = function() {
      if(response.status === 'connected'){
        console.log("Logged in")
        loginStatus = true;
-       testApi();
+       getData();
+       getPicture();
      } else{
        console.log('Not authenticated')
        loginStatus = false;
      }
    }
 
-    function testApi(){
+    function getData(){
       FB.api('/me?fields=name,email,id', function(response){
         if(response && !response.error){
           name = response.name;
@@ -56,6 +59,12 @@ window.fbAsyncInit = function() {
         }
       })
     }
+
+    function getPicture() {
+			FB.api('/me', 'GET', {fields: 'picture.width(50).height(50)'}, function(response) {
+				fbPicture = response.picture.data.url;
+			});
+		}
 
     function refreshPage(){
       window.location.reload();
@@ -83,6 +92,15 @@ window.fbAsyncInit = function() {
         let film = response.data;
         console.log(film)
         let data = ''
+        if(film.Poster === "N/A"){
+          film.Poster = "https://lh5.googleusercontent.com/LONlbb-klLzFmlALezI1kSQyKEZjVEQykay0sSPkHOlVgpA-GGXojBPJzibEA3Or28kgRqpC6B10CzyuUHGF=w1259-h964"
+        }
+        if(name === "undefined"){
+          name = "Default User"
+        }
+        if(fbPicture === "undefined"){
+          fbPicture = "https://lh5.googleusercontent.com/gDTVdOEsHEFpnLYMuDeMpxRCT_TJbqF5ZUssoOtGt6N1ti8disGJQApkKas7R5fkbqNfqbhfGNtARP3T16kp=w1919-h964"
+        }
         data = `
           <img src='${film.Poster}'>
           <div class='column'>
@@ -117,8 +135,9 @@ window.fbAsyncInit = function() {
                 <div class='form'>
                 <form class='opinion' method="post" action="/addname">
                   <input type="text" value="${name}" class='displayNone' name='name'>
-                  <input type="text" value="http://graph.facebook.com/${userID}/picture" class='displayNone' name='fbPicture'>
+                  <input type="text" value="${fbPicture}" class='displayNone' name='fbPicture'>
                   <input type="text" value="${date}" class='displayNone' name='date'>
+                  <input type="text" value="${film.Title}" class='displayNone' name='filmName'>
                   <input type="text" value="${film.Poster}" class='displayNone' name='poster'>
                   <input type="range" name="myScore" min="0" max="10"><br>
                   <textarea rows="4" cols="50" placeholder='Your Opinion' class='myOpinion' name='myOpinion'></textarea><br>
