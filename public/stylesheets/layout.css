@@ -66,7 +66,7 @@ a{
   transition: all 0.15s ease-in-out;
 }
 .top a:hover{
-  color: var(--matBlue);;
+  color: var(--matBlue);
   text-decoration: underline;
 }
 
@@ -86,9 +86,11 @@ a{
   color: black;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 60vw;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 15px;
 }
 
 .eachFilmContainer{
@@ -127,12 +129,18 @@ a{
   padding-top: 7px;
 }
 
+.line3{
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+}
+
 .fbImg img{
   border-radius: 100%;
 }
 
 .description{
-  width: 600px;
+  width: 510px;
   overflow: hidden;
   padding: 0 10px;
   text-align: justify;
@@ -141,4 +149,198 @@ a{
 .filmImg img{
   width: 172px;
   height: 240px;
+}
+
+.displayNone{
+  display: none;
+}
+
+.comments{
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--lightGrey);
+  padding: 10px;
+  width: 700px;
+  border-radius: 4px;
+}
+
+input.addComment{
+  border: none;
+	border-bottom: 1px solid grey;
+	width: 700px;
+	outline: none;
+	font-size: 18px;
+  background-color: var(--lightGrey)
+}
+
+.move{
+  top: 0;
+  transform: translate(0, -14px);
+  color: var(--matBlue) !important;
+  font-size: 12px;
+}
+input::-webkit-datetime-edit{
+  color: transparent;
+}
+input:focus::-webkit-datetime-edit{
+  color: #000;
+}
+
+input::-moz-datetime-edit{
+  color: transparent;
+}
+input:focus::-moz-datetime-edit{
+  color: #000;
+}
+
+input::placeholder {
+  color: transparent;
+  transition: all 0;
+}
+
+input:focus::placeholder{
+  color: grey;
+  transition: all 1s;
+}
+
+input.addComment:focus{
+	border-bottom: 2px solid var(--matBlue) !important;
+	cursor:text !important;
+}
+input.addComment:hover{
+	border-bottom: 2px solid var(--darkBlue);
+  cursor: pointer;
+}
+
+span.disapear{
+	position: absolute;
+	color: grey;
+	transition: all 0.3s;
+	pointer-events: none;
+}
+
+.row{
+	box-sizing: border-box;
+	height: 48px;
+	position: relative;
+  top: 17px;
+}
+
+.eachComment{
+  display: flex;
+  flex-direction: row;
+  margin-top: 3px;
+}
+
+.eachCommentFbPicture img{
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+span.name{
+  color: var(--matBlue);
+  font-weight: 700;  padding-right: 2px;
+}
+
+button.share{
+  width: 88px;
+  height: 38px;
+  background-color: var(--matBlue);
+  border-radius: 2px;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.2);
+  text-align: center;
+  font-size: 18px;
+  line-height: 2;
+  border: none;
+}
+button.share:hover{
+  background-color: #1A77C9;
+  box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+button.share:active{
+  background-color: #1966B8;
+}
+
+.filmImg img{
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.2);
+  border-radius: 2px;
+}
+
+
+
+
+.control {
+    display: block;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.control input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.control_indicator {
+    position: absolute;
+    top: 16px;
+    left: 22px;
+    height: 20px;
+    width: 20px;
+    background: #e6e6e6;
+    border: 0px solid #000000;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.2);
+}
+.control-radio .control_indicator {
+    border-radius: undefined%;
+}
+
+.control:hover input ~ .control_indicator,
+.control input:focus ~ .control_indicator {
+    background: #cccccc;
+}
+
+.control input:checked ~ .control_indicator {
+    background:var(--matBlue);
+}
+.control:hover input:not([disabled]):checked ~ .control_indicator,
+.control input:checked:focus ~ .control_indicator {
+    background: #1A77C9;
+}
+.control input:disabled ~ .control_indicator {
+    background: #e6e6e6;
+    opacity: 0.6;
+    pointer-events: none;
+}
+.control_indicator:after {
+    box-sizing: unset;
+    content: '';
+    position: absolute;
+    display: none;
+}
+.control input:checked ~ .control_indicator:after {
+    display: block;
+}
+.control-checkbox .control_indicator:after {
+    left: 8px;
+    top: 4px;
+    width: 3px;
+    height: 8px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.control-checkbox input:disabled ~ .control_indicator:after {
+    border-color: #7b7b7b;
+}
+
+span.likesCounter{
+  margin-left: 14px;
+  top: 2px;
+  position: relative;
+  font-size: 30px;
 }

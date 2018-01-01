@@ -12,12 +12,12 @@ html
           span.logo2 App
         ul(class="menu1")
           li
-            a(href="http://localhost:3000") Feed
+            a(href="/") Feed
           li
             a(href="add") Add
         ul(class="menu2")
           li
-            .fb-login-button(
+            .fb-login-button(autologoutlink="true",
               data-width="240", data-max-rows="1", data-size="large",
               data-button-type="continue_with", data-show-faces="false",
               data-auto-logout-link="true" data-use-continue-as="true")
@@ -27,7 +27,8 @@ html
 
     .container
       each user, i in users.reverse()
-        - console.log(i , "jakis napis zeby mnie bylo widac", users.length)
+        - console.log(users.length-i)
+        - let result = 0
         .eachFilmContainer(data-number=`${i}`)
           .line1
             .fbImg
@@ -40,5 +41,37 @@ html
               img(src=`${user.poster}`) 
             .description
               span(class=`shareLine2 x${i}`) #{user.myOpinion}  
-              button( class='share' data-key=`${i}`) Post
+          .line3
+            button( class='share' data-key=`${i}`) Post
+            form(class='opinion3' method="post" action="/addname3")
+              input(type='hidden', name='id', value=`${user.id}`)
+              .control-group
+                label.control.control-checkbox Like!
+                  input(type='checkbox', name='like', class='checkbox', value="1", data-likenumber=`${users.length-i-1}`)  
+                  .control_indicator
+              //input(type='hidden', name='id', value=`${user.id}`)
+            each like, i in user.like
+              - result = result + like
+              if (i+1 == user.like.length)
+                span.likesCounter #{result}
+        .comments
+          form(class='opinion2' method="post" action="/addname2")
+            .row
+              span.disapear Write your comment
+              input(type="text", name='comments' class='addComment')
+              input(type="text", name='time', value=`${user.date}`, class='displayNone')
+              input(type="submit" value="Comment" class='displayNone')
+          each comment, i in user.comments
+            .eachComment
+              .eachCommentFbPicture
+                img(src=`${user.fbPicture2[i]}`) 
+              .eachCommentText
+                span.name #{user.name2[i]}
+                span.comment #{comment}
+              
+          
+          
+    
+            
+          
   

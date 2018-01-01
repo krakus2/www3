@@ -11,7 +11,7 @@ window.fbAsyncInit = function() {
     });
 
     function finished_rendering() {
-      console.log("finished rendering plugins");
+      //console.log("finished rendering plugins");
     }
 
     FB.Event.subscribe('xfbml.render', () => {
@@ -19,7 +19,7 @@ window.fbAsyncInit = function() {
         loginStatus = !loginStatus
       });
       FB.Event.subscribe('auth.statusChange', disable);
-      console.log(loginStatus,"hey, i'm loginStatus from FB")
+      //console.log(loginStatus,"hey, i'm loginStatus from FB")
     });
     // In your onload handler
     FB.Event.subscribe('xfbml.render', showMovie);
@@ -40,12 +40,12 @@ window.fbAsyncInit = function() {
 
    function statusChangeCallback(response){
      if(response.status === 'connected'){
-       console.log("Logged in")
+       //console.log("Logged in")
        loginStatus = true;
        getData();
        getPicture();
      } else{
-       console.log('Not authenticated')
+       //console.log('Not authenticated')
        loginStatus = false;
      }
    }
@@ -55,7 +55,7 @@ window.fbAsyncInit = function() {
         if(response && !response.error){
           name = response.name;
           userID = response.id;
-          console.log(name, userID)
+          //console.log(name, userID)
         }
       })
     }
@@ -72,7 +72,7 @@ window.fbAsyncInit = function() {
 
     function disable(){
       const submit = document.querySelector("input[type='submit']")
-      console.log("dziala", submit, loginStatus)
+      //console.log("dziala", submit, loginStatus)
       if(!loginStatus){
         //console.log(submit, loginStatus)
         submit.setAttribute("disabled", "true")
@@ -86,11 +86,11 @@ window.fbAsyncInit = function() {
     function showMovie(){
       let date = Date.now();
       let movieID = sessionStorage.getItem('movieID')
-      console.log(movieID, date)
+      //console.log(movieID, date)
       axios.get('http://www.omdbapi.com?i='+movieID+'&apikey='+'8a68bfda')
       .then((response) => {
         let film = response.data;
-        console.log(film)
+        //console.log(film)
         let data = ''
         if(film.Poster === "N/A"){
           film.Poster = "https://www.eou.edu/theatre/files/2016/08/NO-POSTER-AVAILABLE.jpg"
@@ -104,7 +104,7 @@ window.fbAsyncInit = function() {
         data = `
           <img src='${film.Poster}'>
           <div class='column'>
-            <div class='row'><h3>${film.Title} (${film.Year})</h3></div>
+            <div class='row'><h2>${film.Title}</h2><h5>(${film.Year})</h5></div>
             <div class='row'><div class='one'>${film.Plot}</div></div>
             <table class='table'>
               <tr>
@@ -140,7 +140,7 @@ window.fbAsyncInit = function() {
                   <input type="text" value="${film.Title}" class='displayNone' name='filmName'>
                   <input type="text" value="${film.Poster}" class='displayNone' name='poster'>
                   <input type="range" name="myScore" min="0" max="10"><br>
-                  <textarea rows="4" cols="50" placeholder='Your Opinion' class='myOpinion' name='myOpinion'></textarea><br>
+                  <textarea rows="6" cols="70" placeholder='Your Opinion' class='myOpinion' name='myOpinion' maxlength="400"></textarea><br>
                   <input type="submit" value="Add Film">
                 </form>
               </div>
@@ -148,11 +148,40 @@ window.fbAsyncInit = function() {
         `
         document.querySelector('.oneFilm').innerHTML = data;
         disable();
+
+        $('input[type=range]').wrap("<div class='range'></div>");
+        var i = 1;
+
+        $('.range').each(function() {
+          var n = this.getElementsByTagName('input')[0].value;
+          var x = (n / 10) * (this.getElementsByTagName('input')[0].offsetWidth - 8) - 12;
+          this.id = 'range' + i;
+          if (this.getElementsByTagName('input')[0].value == 0) {
+            this.className = "range"
+          } else {
+            this.className = "range rangeM"
+          }
+          this.innerHTML += "<style>#" + this.id + " input[type=range]::-webkit-slider-runnable-track {background:linear-gradient(to right, #3f51b5 0%, #3f51b5 " + n + "%, #515151 " + n + "%)} #" + this.id + ":hover input[type=range]:before{content:'" + n + "'!important;left: " + x + "px;} #" + this.id + ":hover input[type=range]:after{left: " + x + "px}</style>";
+          i++
+        });
+
+        $('input[type=range]').on("input", function() {
+          var a = this.value;
+          var p = (a / 10) * (this.offsetWidth - 8) - 12;
+          if (a == 0) {
+            this.parentNode.className = "range"
+          } else {
+            this.parentNode.className = "range rangeM"
+          }
+          this.parentNode.getElementsByTagName('style')[0].innerHTML += "#" + this.parentNode.id + " input[type=range]::-webkit-slider-runnable-track {background:linear-gradient(to right, #3f51b5 0%, #3f51b5 " + a + "%, #515151 " + a + "%)} #" + this.parentNode.id + ":hover input[type=range]:before{content:'" + a + "'!important;left: " + p + "px;} #" + this.parentNode.id + ":hover input[type=range]:after{left: " + p + "px}";
+        })
       })
       .catch((err) => {
         console.log(err);
       });
     }
+
+
 
     /*  <div class='row'><div class='one'>RunTime</div><div class='two'>${film.Runtime}</div></div>
       <div class='row'><div class='one'>Genre</div><div class='two'>${film.Genre}</div></div>

@@ -11,7 +11,7 @@ window.fbAsyncInit = function() {
     });
   };
 
-  let loginStatus = 6;
+  let loginStatus;
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -23,14 +23,12 @@ window.fbAsyncInit = function() {
 
    function statusChangeCallback(response){
      if(response.status === 'connected'){
-       console.log("Logged in")
-       //lol1(true)
+       //console.log("Logged in")
        loginStatus = true;
        testApi();
      } else{
-       console.log('Not authenticated')
+       //console.log('Not authenticated')
        loginStatus = false;
-       //lol2(false)
      }
    }
 
@@ -43,7 +41,7 @@ window.fbAsyncInit = function() {
     function testApi(){
       FB.api('/me?fields=name,email', function(response){
         if(response && !response.error){
-          console.log(response.name)
+          //console.log(response.name)
         }
       })
     }
@@ -52,7 +50,7 @@ window.fbAsyncInit = function() {
       //console.log("lol3", loginStatus)
       const fbButton = document.querySelectorAll(".fb-login-button");
       fbButton.forEach( element => element.addEventListener('click', () => {
-        console.log("cokolwiek")
+        //console.log("cokolwiek")
       }));
     });
 
@@ -103,7 +101,7 @@ window.fbAsyncInit = function() {
 
     function getMovie(){
       let movieID = sessionStorage.getItem('movieID')
-      console.log(movieID)
+      //console.log(movieID)
     }
 
     const input = document.querySelectorAll('.field');
