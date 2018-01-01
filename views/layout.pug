@@ -26,18 +26,19 @@ html
       
 
     .container
-      each user in users
-        .eachFilmContainer
+      each user, i in users.reverse()
+        - console.log(i , "jakis napis zeby mnie bylo widac", users.length)
+        .eachFilmContainer(data-number=`${i}`)
           .line1
             .fbImg
               img(src=`${user.fbPicture}`) 
             .basic
-              span #{user.name} ocenił #{user.filmName} na #{user.myScore}  
+              span(class=`shareLine1 x${i}`) #{user.name} ocenił #{user.filmName} na #{user.myScore}  
               span #{new Date(user.date).toLocaleDateString()}
           .line2
             .filmImg
               img(src=`${user.poster}`) 
             .description
-              span #{user.myOpinion}  
-              button(onclick="myFacebookLogin()") Post
+              span(class=`shareLine2 x${i}`) #{user.myOpinion}  
+              button( class='share' data-key=`${i}`) Post
   

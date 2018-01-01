@@ -31,6 +31,10 @@ var nameSchema = new mongoose.Schema({
     myScore: String,
     myOpinion: String
 });
+  //Create a Model by using the schema defined above
+  //Optionally one can provide the name of collection where the instances
+  //of this model get stored. In this case it is "mongoose_demo". Skipping
+  //this value defaults the name of the collection to plural of model name i.e users.
 var user = mongoose.model("user", nameSchema);
 
 var app = express();

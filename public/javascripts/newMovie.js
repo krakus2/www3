@@ -93,13 +93,13 @@ window.fbAsyncInit = function() {
         console.log(film)
         let data = ''
         if(film.Poster === "N/A"){
-          film.Poster = "https://lh5.googleusercontent.com/LONlbb-klLzFmlALezI1kSQyKEZjVEQykay0sSPkHOlVgpA-GGXojBPJzibEA3Or28kgRqpC6B10CzyuUHGF=w1259-h964"
+          film.Poster = "https://www.eou.edu/theatre/files/2016/08/NO-POSTER-AVAILABLE.jpg"
         }
         if(name === "undefined"){
           name = "Default User"
         }
         if(fbPicture === "undefined"){
-          fbPicture = "https://lh5.googleusercontent.com/gDTVdOEsHEFpnLYMuDeMpxRCT_TJbqF5ZUssoOtGt6N1ti8disGJQApkKas7R5fkbqNfqbhfGNtARP3T16kp=w1919-h964"
+          fbPicture = "https://www.spi.ox.ac.uk/sites/default/files/styles/callout_person_image/public/spi/images/media/no_image_available.png?itok=7M3bfhcq"
         }
         data = `
           <img src='${film.Poster}'>

@@ -1,3 +1,6 @@
+const MongoClient = require('mongodb').MongoClient;
+const url = "mongodb://projekt_www:projekt@ds129156.mlab.com:29156/projekt_www";
+
 window.fbAsyncInit = function() {
     FB.init({
       appId      : '129768334367976',
@@ -22,10 +25,11 @@ window.fbAsyncInit = function() {
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-   function myFacebookLogin() {
+   /*function myFacebookLogin() {
      FB.login(function(){}, {scope: 'publish_actions'});
+     console.log("dziala share")
      FB.api('/me/feed', 'post', {message: 'Other message!'});
-   }
+   }*/
 
    function checkLoginState() {
       FB.getLoginStatus(function(response) {
@@ -43,3 +47,28 @@ window.fbAsyncInit = function() {
        loginStatus = false;
      }
    }
+
+   window.addEventListener('load', () => {
+     let buttons = document.getElementsByClassName('share');
+     let shares = [...buttons]
+     shares.forEach((elem, i) => {
+       elem.addEventListener('click', function myFacebookLogin(e) {
+         let key = e.target.getAttribute("data-key")
+         let line1 = document.querySelector(`.shareLine1.x${key}`).textContent
+         let line2 = document.querySelector(`.shareLine2.x${key}`).textContent
+         //console.log(e.target.parentElement.childNodes[0].textContent)
+         FB.login(function(){}, {scope: 'publish_actions'});
+         console.log("dziala share")
+         FB.api('/me/feed', 'post', {message: `${line1}\n${line2}`});
+       })
+     })
+     MongoClient.connect(url, function(err, db) {
+       if (err) throw err;
+       var myobj = { name: "Company Inc", address: "Highway 37" };
+       db.collection("users").insertOne(myobj, function(err, res) {
+         if (err) throw err;
+         console.log("1 document inserted");
+         db.close();
+       });
+     });
+   })

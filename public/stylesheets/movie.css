@@ -102,6 +102,9 @@ a{
 }
 .oneFilm img{
   align-self: center;
+  width: 300px;
+  height: 463px;
+
 }
 .one{text-align: justify;}
 .row{
